@@ -10,7 +10,7 @@ const CACHE_NAME = 'pwa-demo-cache-v1',
         './favicon.ico',
         './img/icon_192x192.png',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css',
-        'https://code.getmdl.io/1.3.0/material.red-indigo.min.css',
+        './material.min.css',
         './material.min.js'
     ]
 
