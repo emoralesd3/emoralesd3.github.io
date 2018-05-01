@@ -39,4 +39,9 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
     }
 })(document, navigator, window, console.log);
 
+//deteccion del estado de la conexion
+((d, n, w, c) => {
+    
+})(document, navigator, window, console.log);
+
 

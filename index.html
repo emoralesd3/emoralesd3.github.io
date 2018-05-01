@@ -41,12 +41,43 @@
     <meta property="og:url" content="http://18.188.155.233:8080">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-indigo.min.css" /> 
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Progessive Web Apps Demo</h1>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Demo</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Title</span>
+            <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, nemo? Ducimus aperiam quo odit. Inventore hic quod odio veniam temporibus modi reiciendis maiores quo aperiam! Exercitationem tenetur ex cum ipsam?</p>
+            </div>
+        </main>
+    </div>
     <!--<script src="./promises.js"></script>-->
     <script src="./script.js"></script>
+    <script src="./material.min.js"></script>
 </body>
 </html>
