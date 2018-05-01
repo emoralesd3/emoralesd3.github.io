@@ -76,3 +76,14 @@ self.addEventListener('push', e => {
         }
     e.waitUntil(self.registration.showNotification(title,options))
 })
+
+self.addEventListener('notificationclick', e => {
+    console.log(e)
+    if(e.action === 'Si'){
+        console.log('Amo esta aplicacion')
+        clients.openWindow('https://github.com/emoralesd3')
+    }else if(e.action === 'No'){
+        console.log('No me gusta esta aplicacion')
+    }
+    e.notification.close()
+})

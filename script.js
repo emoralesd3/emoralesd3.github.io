@@ -34,6 +34,7 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
                     icon: './img/icon_192x192.png'
                 }
             )
+            notify.close()
         })
     }
 })(document, navigator, window, console.log);
