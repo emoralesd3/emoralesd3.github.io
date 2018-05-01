@@ -4,11 +4,11 @@ const CACHE_NAME = 'pwa-demo-cache-v1',
         './',
         './?utm=homescreen',
         './index.html',
-        './index.html/?utm=homescreen',
+        './index.html?utm=homescreen',
         './style.css',
         './script.js',
         './favicon.ico',
-        './sw.js',
+        './img/icon_192x192.png',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'
     ]
 
@@ -19,31 +19,9 @@ self.addEventListener('install', e => {
             .then(cache => {
                 console.log("Archivos en cache")
                 return cache.addAll(urlsToCache)
+                .then( () => self.skipWaiting() )
             })
             .catch(error => console.log("Fallo el registro de cache ", error))
-    )
-})
-
-self.addEventListener('fetch', e => {
-    console.log('Evento: SW recuperando')
-    e.respondWith(
-        caches.match(e.request)
-            .then(res => {
-                if(res){
-                    return res
-                }
-                return fetch(request)
-                    .then(res => {
-                        let resToCache = res.clone()
-                        caches.open(cacheName)
-                            .then(cache => {
-                                cache
-                                    .put(request, resToCache)
-                                    .catch(error => console.log(`${request.url}: ${error.message}`))
-                            })
-                    })
-                    return res
-            })
     )
 })
 
@@ -69,3 +47,15 @@ self.addEventListener('activate', e => {
     )
 })
 
+self.addEventListener('fetch', e => {
+    console.log('Evento: SW recuperando')
+    e.respondWith(
+        caches.match(e.request)
+            .then(res => {
+                if(res){
+                    return res
+                }
+                return fetch(e.request)
+            })
+    )
+})
