@@ -59,3 +59,20 @@ self.addEventListener('fetch', e => {
             })
     )
 })
+
+self.addEventListener('push', e => {
+    console.log('Evento: Push')
+
+    let title = "Push Notificacion Demo",
+        options = {
+            body: "Click para regresar a la aplicacion",
+            icon: './img/icon_192x192.png',
+            vibrate: [100,50,100],
+            data: { id: 1},
+            actions: [
+                { 'action': 'Si', 'Title': 'Amo esta notificacion :)', icon: './img/icon_192x192.png' },
+                { 'action': 'No', 'Title': 'No me gusta esta notificacion :)', icon: './img/icon_192x192.png' }
+            ]
+        }
+    e.waitUntil(self.registration.showNotification(title,options))
+})
