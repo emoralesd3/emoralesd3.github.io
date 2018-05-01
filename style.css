@@ -1,0 +1,5 @@
+.u-offline{
+    background-color: #666;
+    color: #FFF;
+    filter: blur(.1rem);
+}
