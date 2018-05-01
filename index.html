@@ -43,6 +43,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+            appId: "84381533-974b-4b21-82ad-52a6b537b256",
+            autoRegister: false,
+            notifyButton: {
+                enable: true,
+            },
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>Progessive Web Apps Demo</h1>
