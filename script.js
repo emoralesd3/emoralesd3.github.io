@@ -50,6 +50,23 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
 
         registerBGSync()
     }
+
+    //Compartiendo contenido con el API Share
+    if(n.share !== undefined){
+        d.addEventListener('DOMContentLoaded', e => {
+            let shareBtn = d.getElementById('share')
+
+            shareBtn.addEventListener('click', e =>{
+                n.share({
+                    title: d.title,
+                    text: 'Hola soy un contenido para compartir',
+                    url: w.location.href
+                })
+                .then(() => c('Contenido compartido con exito'))
+                .catch(error => c('Error al compartir: ', error))
+            })
+        })
+    }
 })(document, navigator, window, console.log);
 
 //deteccion del estado de la conexion
@@ -175,8 +192,3 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
         fetchGitHubUser(localStorage.getItem('github'), true)
     })
 })(document, navigator, window, console.log);
-
-((d, n, w, c) => {
-    
-})(document, navigator, window, console.log);
-
