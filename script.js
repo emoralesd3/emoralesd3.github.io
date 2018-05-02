@@ -100,7 +100,9 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
             .then(response => response.json())
             .then(userData => {
 
-
+                if(!requestFromBGSync){
+                    localStorage.removeItem('github')
+                }
 
                 let template = `
                     <div class="mdl-card__title mdl-card--expand">
@@ -144,6 +146,7 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
                 userInfo.innerHTML = template
             })
             .catch(err => {
+                localStorage.setItem('github', name)
                 c(err)
             })
     }
@@ -165,6 +168,11 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
 
         //limpiamos el formulario
         e.target.reset()
+    })
+
+    n.serviceWorker.addEventListener('message', e => {
+        c('Desde la sincronizacion de fondo: ', e.data)
+        fetchGitHubUser(localStorage.getItem('github'), true)
     })
 })(document, navigator, window, console.log);
 
