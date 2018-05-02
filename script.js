@@ -107,7 +107,7 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
                         <h2 class="mdl-card__title-text">${userData.name}</h2>
                     </div>
                     <div class="mdl-card__media">
-                        <img src="${userData.avatar_url}" width="290" height="170" border="0" alt="${userData.login}" style="padding:20px;">
+                        <img src="${userData.avatar_url}" border="0" alt="${userData.login}">
                     </div>
                     <div class="mdl-card__supporting-text">
                         ${userData.bio}
