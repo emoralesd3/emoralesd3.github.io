@@ -64,7 +64,7 @@ self.addEventListener('fetch', e => {
 })
 
 self.addEventListener('push', e => {
-    console.log('Evento: Push')
+    console.log('Evento: Push ', e)
 
     let title = "Push Notificacion Demo",
         options = {
@@ -89,4 +89,22 @@ self.addEventListener('notificationclick', e => {
         console.log('No me gusta esta aplicacion')
     }
     e.notification.close()
+})
+
+self.addEventListener('sync', e => {
+    console.log('Evento: Sincronizacion de fondo ', e)
+
+    //revisamos que la etiqueta de sincronizacion sea la que definamos
+    if(e.tag === 'github'){
+        e.waitUntil(
+            //comprobamos todas las pesta;as abiertas y le enviamos postMessage
+            self.clients.matchAll()
+                .then(all => {
+                    return all.map(client => {
+                        return client.postMessage('online')
+                    })
+                })
+                .catch(error => console.log(error))
+        )
+    }
 })

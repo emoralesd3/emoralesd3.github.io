@@ -36,6 +36,20 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
             )  
         })
     }
+
+    //activar sincronizacion de fondo
+    if('serviceWorker' in n && 'SyncManager' in w){
+        function registerBGSync(){
+            n.serviceWorker.ready
+                .then(registration => {
+                    return registration.sync.register('github')
+                        .then( () => c('Sincronizacion de fondo registrada'))
+                        .catch( error => c('Fallo la sincronizacion de fondo', error))
+                })
+        }
+
+        registerBGSync()
+    }
 })(document, navigator, window, console.log);
 
 //deteccion del estado de la conexion
@@ -73,8 +87,85 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
     })
 })(document, navigator, window, console.log);
 
+//Aplicacion demo interactuando con el API de Github y la sincronizacion de fondo
 ((d, n, w, c) => {
-    
+    const userInfo = d.querySelector('.GitHubUser'),
+        searchForm = d.querySelector('.GitHubUser-form')
+
+    function fetchGitHubUser(username, requestFromBGSync){
+        let name = username || 'emoralesd3',
+            url = `https://api.github.com/users/${name}`
+
+        fetch(url, {method: 'GET'})
+            .then(response => response.json())
+            .then(userData => {
+
+
+
+                let template = `
+                    <div class="mdl-card__title mdl-card--expand">
+                        <h2 class="mdl-card__title-text">${userData.name}</h2>
+                    </div>
+                    <div class="mdl-card__media">
+                        <img src="${userData.avatar_url}" width="290" height="170" border="0" alt="${userData.login}" style="padding:20px;">
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        ${userData.bio}
+                        <ul class="demo-list-item mdl-list">
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                ${userData.login}
+                                </span>
+                            </li>
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                ${userData.html_url}
+                                </span>
+                            </li>
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                    <span class="mdl-badge" data-badge="${userData.followers}">Seguidores </span>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                <span class="mdl-badge" data-badge="${userData.following}">Siguiendo </span>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                Ubicacion ${userData.location}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                `
+
+                userInfo.innerHTML = template
+            })
+            .catch(err => {
+                c(err)
+            })
+    }
+
+    fetchGitHubUser(localStorage.getItem('github'))
+
+    searchForm.addEventListener('submit', e => {
+        e.preventDefault()
+
+        let user = d.getElementById('search').value
+
+        //si el campo de search esta vacio no hacemos nada
+        if(user === '') return;
+
+        //almacenamos en localstorage el usuario de github
+        localStorage.setItem('github', user)
+
+        fetchGitHubUser(user)
+
+        //limpiamos el formulario
+        e.target.reset()
+    })
 })(document, navigator, window, console.log);
 
 ((d, n, w, c) => {

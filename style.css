@@ -3,3 +3,7 @@
     color: #FFF;
     filter: blur(.1rem);
 }
+
+.page-content{
+    padding: 25px;
+}
