@@ -78,18 +78,42 @@ const applicationServerPublicKey = 'BFIuRbWDMmpLOZrMJD6QGdmQ-P1abdQuX7v4z4N58TEL
         if(n.onLine){
             metaTagTheme.setAttribute('content', '#F7DF1E')
             header.classList.remove('u-offline')
-            alert('Conexion recuperada :)')
-            let notify = new Notification('Conexion',{
-                body: 'Conexion recuperada',
-                icon: './img/icon_192x192.png'
+            //alert('Conexion recuperada :)')
+            n.serviceWorker.addEventListener('push', e => {
+                console.log('Evento: Push ', e)
+            
+                let title = "Push Notificacion Demo Conexion",
+                    options = {
+                        body: "Conexion Recuperada",
+                        icon: './img/icon_192x192.png',
+                        vibrate: [100,50,100],
+                        data: { id: 1},
+                        actions: [
+                            { 'action': 'Si', 'Title': 'Amo esta notificacion :)', icon: './img/icon_192x192.png' },
+                            { 'action': 'No', 'Title': 'No me gusta esta notificacion :)', icon: './img/icon_192x192.png' }
+                        ]
+                    }
+                e.waitUntil(self.registration.showNotification(title,options))
             })
         }else{
             metaTagTheme.setAttribute('content', '#666')
             header.classList.add('u-offline')
-            alert('Conexion perdida :(')
-            let notify = new Notification('Conexion',{
-                body: 'Conexion perdida',
-                icon: './img/icon_192x192.png'
+            //alert('Conexion perdida :(')
+            n.serviceWorker.addEventListener('push', e => {
+                console.log('Evento: Push ', e)
+            
+                let title = "Push Notificacion Demo Conexion",
+                    options = {
+                        body: "Conexion Perdida",
+                        icon: './img/icon_192x192.png',
+                        vibrate: [100,50,100],
+                        data: { id: 1},
+                        actions: [
+                            { 'action': 'Si', 'Title': 'Amo esta notificacion :)', icon: './img/icon_192x192.png' },
+                            { 'action': 'No', 'Title': 'No me gusta esta notificacion :)', icon: './img/icon_192x192.png' }
+                        ]
+                    }
+                e.waitUntil(self.registration.showNotification(title,options))
             })
         }
     }
