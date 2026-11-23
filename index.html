@@ -3,290 +3,234 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Elvin Morales | Analista Desarrollador de Software</title>
-  <meta name="description" content="Portafolio de Elvin Rosalio Morales De León, Ingeniero en Sistemas y analista desarrollador de software con más de 7 años de experiencia.">
+  <title>Elvin Morales | Desarrollo de software a la medida en Guatemala y LATAM</title>
+  <meta name="description" content="Elvin Morales, desarrollador de software con 9+ años de experiencia. Sistemas web, aplicaciones móviles y automatización a la medida para finanzas, contabilidad, operaciones y ventas en Guatemala y LATAM.">
+  <meta name="theme-color" content="#0e5a4a">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Elvin Morales | Desarrollo de software a la medida">
+  <meta property="og:description" content="Sistemas web, apps móviles y automatización para empresas de Guatemala y LATAM.">
+  <meta property="og:image" content="img/foto.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+  <script>
+    /* Tema antes de pintar, para evitar parpadeo */
+    (function () {
+      document.documentElement.classList.add('js');
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
-  <div class="progress" id="progress"></div>
-  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a class="logo" href="#inicio">@<span class="grad">EM</span><svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de Guatemala"><rect width="30" height="20" fill="#4997D0"/><rect x="10" width="10" height="20" fill="#fff"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#5a8f3d" stroke-width="1"/></svg></a>
-      <nav class="links" id="links">
-        <a href="#sobre-mi">Sobre mí</a>
+    <div class="wrap nav-row">
+      <a class="logo" href="#inicio" aria-label="Inicio">
+        <span class="logo-mark">@EM</span>
+        <svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de Guatemala"><rect width="30" height="20" fill="#4997D0"/><rect x="10" width="10" height="20" fill="#fff"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#5a8f3d" stroke-width="1"/></svg>
+      </a>
+      <nav class="links" id="links" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
         <a href="#proyectos">Proyectos</a>
-        <a href="#educacion">Educación</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#sobre-mi">Sobre mí</a>
         <a href="#contacto">Contacto</a>
+        <a class="btn btn-sm nav-cta" href="#contacto">Cotizar proyecto</a>
       </nav>
-      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <div class="nav-tools">
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro" title="Cambiar tema">
+          <svg class="i-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="links">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section id="inicio" class="hero">
-      <div>
-        <span class="badge"><i></i> Ciudad de Guatemala</span>
-        <h1>Hola, soy <span class="grad">Elvin Morales</span></h1>
-        <p class="rotator">Soy <strong id="rot"></strong><span class="caret"></span></p>
-        <p class="lead">Soy desarrollador de software con 9+ años de experiencia en la creación de aplicaciones web de alto rendimiento y escalables. Mi experiencia abarca desarrollo backend con Laravel (PHP) y Node.js con Express, y desarrollo frontend con JavaScript, Vue.js, Nuxt, Vuetify, Tailwind CSS, React.js y Next.js.</p>
-        <p class="lead">Ayudo a empresas y startups a transformar sus ideas en aplicaciones fiables y modernas. trabajo con arquitecturas monolíticas y microservicios, garantizo soluciones limpias y mantenibles.</p>
-        <div class="actions">
-          <a class="btn" href="#proyectos">Ver proyectos →</a>
-          <a class="btn ghost" href="#contacto">Contáctame</a>
-        </div>
-      </div>
-      <div class="side">
-      <div class="avatar"><img src="img/foto.jpg" alt="Foto de Elvin Morales" width="1050" height="1200" fetchpriority="high"></div>
-      <div class="stats">
-        <div class="stat"><b class="grad">+9</b><span>años de experiencia</span></div>
-        <div class="stat"><b class="grad">15+</b><span>sistemas implementados</span></div>
-        <div class="stat"><b class="grad">Backend &amp; Frontend · Móvil</b><span>PHP, Laravel, Flutter, Dart, JavaScript, Express, Vue.js, React.js, Tailwind</span></div>
-      </div>
-      </div>
-    </section>
+  <main id="main">
+    <!-- ================= VISTA PRINCIPAL ================= -->
+    <div id="home">
 
-    <div class="marquee" aria-hidden="true">
-      <div class="track" id="track">
-        <span>PHP</span><span>Laravel</span><span>Node.js</span><span>Express</span><span>JavaScript</span><span>Vue.js</span><span>Nuxt</span><span>React.js</span><span>Next.js</span><span>Tailwind CSS</span><span>Flutter</span><span>Dart</span><span>MySQL</span><span>PostgreSQL</span><span>SQL Server</span><span>Docker</span><span>Scrum</span>
+      <!-- HERO -->
+      <section id="inicio" class="hero wrap">
+        <div class="hero-copy">
+          <span class="badge"><i></i> Ciudad de Guatemala · Remoto en toda LATAM</span>
+          <h1>Software <em>a la medida</em> para Guatemala y LATAM</h1>
+          <p class="rotator">Soy <strong id="rot"></strong><span class="caret"></span></p>
+          <p class="lead">Soy desarrollador de software con 9+ años de experiencia en la creación de aplicaciones web de alto rendimiento y escalables. Mi experiencia abarca desarrollo backend con Laravel (PHP) y Node.js con Express, y desarrollo frontend con JavaScript, Vue.js, Nuxt, Vuetify, Tailwind CSS, React.js y Next.js.</p>
+          <p class="lead">Acompaño a empresas, startups, instituciones gubernamentales y ONG a convertir sus ideas y procesos en sistemas fiables y modernos: desde construir uno nuevo hasta modernizar, integrar o automatizar el que ya tienen. Trabajo con arquitecturas monolíticas y microservicios, priorizando un código limpio, seguro y fácil de mantener.</p>
+          <div class="actions">
+            <a class="btn" href="#contacto">Cotizar mi proyecto</a>
+            <a class="btn btn-ghost" href="#proyectos">Ver proyectos →</a>
+          </div>
+          <dl class="stats">
+            <div><dt data-count>+9</dt><dd>años de experiencia</dd></div>
+            <div><dt data-count>15+</dt><dd>sistemas implementados</dd></div>
+            <div><dt class="stat-text">Web · Móvil · API</dt><dd>PHP, Laravel, Flutter, Node.js, Vue.js, React.js</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero-visual">
+          <div class="arch">
+            <img src="img/foto.jpg" alt="Foto de Elvin Morales" width="1050" height="1200" fetchpriority="high">
+          </div>
+          <div class="float f1"><b>Maestría</b><span>Seguridad Informática</span></div>
+          <div class="float f2"><b>Colegiado No. 23,225</b><span>Ing. en Sistemas de Información</span></div>
+        </div>
+      </section>
+
+      <div class="stack wrap" aria-label="Tecnologías">
+        <span class="stack-label">Trabajo con</span>
+        <ul>
+          <li>PHP</li><li>Laravel</li><li>Node.js</li><li>Express</li><li>JavaScript</li><li>Vue.js</li><li>Nuxt</li><li>React.js</li><li>Next.js</li><li>Tailwind CSS</li><li>Flutter</li><li>Dart</li><li>MySQL</li><li>PostgreSQL</li><li>SQL Server</li><li>Docker</li><li>Figma</li><li>Scrum</li>
+        </ul>
       </div>
+
+      <!-- SERVICIOS -->
+      <section id="servicios" class="section wrap">
+        <header class="sec-head reveal">
+          <span class="eyebrow"><b>01</b> Servicios</span>
+          <h2>Problemas reales, resueltos con <em>tecnología</em></h2>
+          <p>Diseño y construyo el sistema que tu operación necesita, en lugar de obligarte a adaptarte a un software genérico. Elige tu área y mira qué puedo resolver.</p>
+        </header>
+
+        <div class="latam reveal">
+          <div>
+            <b>Hecho para Guatemala y LATAM</b>
+            <span>Me considero con el conocimiento necesario para llevar a cabo tu proyecto o colaborar en él, desde la idea hasta la puesta en marcha. Estas son algunas de las soluciones que puedo desarrollar:</span>
+            <div class="latam-tags"><em>Organizaciones</em><em>Contabilidad</em><em>Finanzas y créditos</em><em>POS</em><em>Tiendas en línea</em><em>Reservas</em><em>CRM</em><em>Portales web</em><em>Gestión interna</em><em>Apps móviles</em></div>
+          </div>
+          <ul>
+            <li><b>Horario Guatemala</b> Trabajo en UTC-6, compatible con toda LATAM.</li>
+            <li><b>100% en español</b> Reuniones, documentación y soporte.</li>
+            <li><b>Remoto o presencial</b> Videollamadas y reuniones en Ciudad de Guatemala.</li>
+          </ul>
+        </div>
+
+        <div class="filters reveal" id="filters" role="group" aria-label="Filtrar servicios por área"></div>
+        <div class="svc-grid" id="svcGrid" aria-live="polite"></div>
+
+        <div class="svc-cta reveal">
+          <p><b>¿No ves tu caso?</b> Si necesitas digitalizar, automatizar, integrar o modernizar un proceso o un sistema existente, cuéntame y evaluamos juntos cómo abordarlo.</p>
+          <a class="btn" href="#contacto">Cuéntame tu necesidad</a>
+        </div>
+      </section>
+
+      <!-- PROYECTOS -->
+      <section id="proyectos" class="section wrap">
+        <header class="sec-head reveal">
+          <span class="eyebrow"><b>02</b> Portafolio</span>
+          <h2>Proyectos <em>implementados</em></h2>
+          <p>Sistemas que he desarrollado como analista desarrollador. Entra a cada uno para ver el detalle, los módulos, la galería y cómo contactarme para algo similar.</p>
+        </header>
+        <div class="proj-grid" id="projGrid"></div>
+      </section>
+
+      <!-- PROCESO -->
+      <section id="proceso" class="section wrap">
+        <header class="sec-head reveal">
+          <span class="eyebrow"><b>03</b> Cómo trabajo</span>
+          <h2>Un proceso claro, <em>sin sorpresas</em></h2>
+        </header>
+        <ol class="steps">
+          <li class="reveal"><span>1</span><h3>Diagnóstico</h3><p>Entiendo tu negocio, tus procesos y el problema real antes de proponer una solución.</p></li>
+          <li class="reveal"><span>2</span><h3>Diseño</h3><p>Prototipos en Figma o Balsamiq, arquitectura de la solución, alcance y plan de entregas antes de programar.</p></li>
+          <li class="reveal"><span>3</span><h3>Desarrollo ágil</h3><p>Entregas por etapas con Scrum: ves avances reales y ajustamos sobre la marcha.</p></li>
+          <li class="reveal"><span>4</span><h3>Entrega y garantía</h3><p>Puesta en marcha con un mes de garantía: si algo de lo acordado no funciona como debe, lo corrijo. Los cambios y mejoras fuera del alcance acordado se trabajan bajo un acuerdo aparte.</p></li>
+        </ol>
+      </section>
+
+      <!-- SOBRE MÍ -->
+      <section id="sobre-mi" class="section wrap">
+        <div class="about">
+          <header class="sec-head reveal">
+            <span class="eyebrow"><b>04</b> Sobre mí</span>
+            <h2>Soluciones de calidad, <em>entregadas por etapas</em></h2>
+            <p>Soy un desarrollador responsable y orientado a resultados. Primero entiendo el problema de fondo y luego diseño una solución a la medida, clara y fácil de mantener. He construido sistemas contables, financieros, de soporte y de administración, integrados con servicios como firma electrónica y facturación electrónica. Cada sistema incluye control de accesos, roles y permisos para proteger la información. Trabajo por etapas, anticipando riesgos y ajustando sobre la marcha, y respaldo la puesta en marcha con un mes de garantía.</p>
+          </header>
+          <div class="about-cols reveal">
+            <div>
+              <h3 class="mini">Educación</h3>
+              <ul class="edu">
+                <li><small>2022 – 2023</small><b>Maestría en Seguridad Informática</b><span>Universidad Mariano Gálvez de Guatemala</span></li>
+                <li><small>2014 – 2020</small><b>Ing. en Sistemas de Información y Ciencias de la Computación</b><span>Universidad Mariano Gálvez de Guatemala · Colegiado No. 23,225</span></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="mini">Conocimientos</h3>
+              <div class="chips">
+                <span>Scrum</span><span>MySQL</span><span>PostgreSQL</span><span>SQL Server</span><span>Arquitectura de software</span><span>Docker</span><span>Backend</span><span>Frontend</span><span>Desarrollo móvil</span><span>Flutter</span><span>Figma</span><span>Balsamiq</span>
+              </div>
+              <h3 class="mini">Habilidades</h3>
+              <div class="chips">
+                <span>Autodidacta</span><span>Analítico</span><span>Organizado</span><span>Trabajo en equipo</span><span>Relaciones interpersonales</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" class="section wrap">
+        <div class="contact reveal">
+          <div class="contact-info">
+            <span class="eyebrow"><b>05</b> Contacto</span>
+            <h2>Cuéntame qué <em>necesitas</em></h2>
+            <p>Describe tu idea o problema y te respondo con una propuesta de cómo abordarlo. Sin compromiso.</p>
+            <ul class="contact-links">
+              <li><a data-wa href="#" target="_blank" rel="noopener">WhatsApp <span>+502 3406 4744</span></a></li>
+              <li><a data-mail href="#">Correo <span>elvinmorales48@gmail.com</span></a></li>
+              <li><a href="https://www.linkedin.com/in/elvin-morales/" target="_blank" rel="noopener">LinkedIn <span>/in/elvin-morales</span></a></li>
+              <li><a href="https://github.com/emoralesd3" target="_blank" rel="noopener">GitHub <span>@emoralesd3</span></a></li>
+            </ul>
+          </div>
+          <form class="form" id="contactForm" novalidate>
+            <label>Tu nombre<input name="nombre" type="text" autocomplete="name" required placeholder="Nombre y apellido"></label>
+            <label>¿Qué necesitas?<select name="tipo" id="tipoSel"></select></label>
+            <label>Cuéntame más<textarea name="mensaje" rows="4" required placeholder="Describe brevemente tu proyecto o el problema que quieres resolver"></textarea></label>
+            <div class="form-actions">
+              <button class="btn" type="submit" data-via="wa">Enviar por WhatsApp</button>
+              <button class="btn btn-ghost" type="submit" data-via="mail">Enviar por correo</button>
+            </div>
+            <p class="form-note">Se abrirá tu app de WhatsApp o correo con el mensaje listo. No se guarda ningún dato en este sitio.</p>
+          </form>
+        </div>
+      </section>
+
+      <noscript><p class="wrap" style="padding:24px 0">Este sitio necesita JavaScript para mostrar servicios y proyectos. Contáctame en <a href="mailto:elvinmorales48@gmail.com">elvinmorales48@gmail.com</a>.</p></noscript>
     </div>
 
-    <section id="sobre-mi" class="reveal">
-      <div class="about">
-        <div>
-          <span class="eyebrow">Sobre mí</span>
-          <h2>Soluciones de calidad, entregadas a tiempo</h2>
-          <p>Soy un profesional responsable y orientado al logro de objetivos, con capacidad para resolver problemas de manera eficiente. Promuevo la eficiencia operativa, la innovación y la mejora continua, gestiono riesgos y garantizo la entrega oportuna de soluciones de calidad.</p>
-          <p style="margin-top:14px">Ing. en Sistemas de Información y Ciencias de la Computación · Colegiado No. 23,225.</p>
-        </div>
-        <div>
-          <h3 class="sub">Conocimientos</h3>
-          <div class="chips">
-            <span>Scrum</span><span>MySQL</span><span>PostgreSQL</span><span>SQL Server</span>
-            <span>Arquitectura de software</span><span>Docker</span><span>Backend</span><span>Frontend</span><span>Desarrollo móvil</span><span>Flutter</span>
-            <span>Figma</span><span>Balsamiq</span>
-          </div>
-          <h3 class="sub">Habilidades</h3>
-          <div class="chips">
-            <span>Autodidacta</span><span>Analítico</span><span>Organizado</span>
-            <span>Trabajo en equipo</span><span>Relaciones interpersonales</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="proyectos">
-      <div class="reveal">
-        <span class="eyebrow">Proyectos</span>
-        <h2>Experiencia en BITESEIT</h2>
-        <p class="section-sub">Sistemas que he implementado como analista desarrollador de software. Haz clic en las imágenes para verlas en grande. Todos incluyen gestión de usuarios, roles, menús y permisos.</p>
-      </div>
-
-      <!-- Para agregar imágenes: guárdalas en la carpeta indicada en data-folder y lista sus nombres en data-images -->
-      <article class="project reveal">
-        <div>
-          <span class="year">2026</span>
-          <h3>Sistema contable</h3>
-          <p>Cuentas contables, centros de costos, cuentas bancarias, chequeras y conciliaciones bancarias. Cierres contables, formatos de cheques, numeración de pólizas, partidas bancarias/ajustes y notificaciones push/email.</p>
-          <p>Reportes: estado de resultados, libro diario, libro mayor y balance general.</p>
-          <div class="tags"><span>Contabilidad</span><span>Bancos</span><span>Reportes</span></div>
-        </div>
-        <div class="gallery" data-folder="img/sistema-contable" data-images=""></div>
-      </article>
-
-      <article class="project reveal">
-        <div>
-          <span class="year">2026</span>
-          <h3>Sistema financiero</h3>
-          <p>Gestión de clientes y solicitudes de crédito individual, empleado y grupal. Cartera, historial crediticio, aprobación por comité configurable, productos crediticios, pagos, tabla de amortización y exoneraciones.</p>
-          <p>Reasignación de pagos y carteras, firmas digitales, notificaciones y reportes crediticios y de recuperación.</p>
-          <div class="tags"><span>Créditos</span><span>Firma digital</span><span>Cartera</span></div>
-        </div>
-        <div class="gallery" data-folder="img/sistema-financiero" data-images=""></div>
-      </article>
-
-      <article class="project reveal">
-        <div>
-          <span class="year">2025</span>
-          <h3>Sistema de control de tickets</h3>
-          <p>Solicitud de soporte del cliente, revisión por analista y asignación a técnico responsable. Control de tiempos de atención, encuesta KPI y dashboard administrativo por técnico.</p>
-          <p>Reasignación de tickets, notificaciones push/email y reportes de atención.</p>
-          <div class="tags"><span>Soporte</span><span>KPI</span><span>Dashboard</span></div>
-        </div>
-        <div class="gallery" data-folder="img/control-tickets" data-images=""></div>
-      </article>
-
-      <article class="project reveal">
-        <div>
-          <span class="year">2024</span>
-          <h3>Sistema Parroquial</h3>
-          <p>Consultoría individual. Control de pagos (crédito, transferencia y efectivo), ofrendas y constancias de bautismo, casamiento, 15 años y difuntos.</p>
-          <p>Reportes de ingresos diarios, por rango de fechas y consulta de eventos.</p>
-          <div class="tags"><span>Consultoría</span><span>Pagos</span><span>Constancias</span></div>
-        </div>
-        <div class="gallery" data-folder="img/sistema-parroquial" data-images=""></div>
-      </article>
-    </section>
-
-    <section id="educacion" class="reveal">
-      <span class="eyebrow">Formación</span>
-      <h2>Educación</h2>
-      <div class="timeline">
-        <div class="tl"><small>2022 – 2023</small><h3>Maestría en Seguridad Informática</h3><p>Universidad Mariano Gálvez de Guatemala</p></div>
-        <div class="tl"><small>2014 – 2020</small><h3>Ing. en Sistemas de Información y Ciencias de la Computación</h3><p>Universidad Mariano Gálvez de Guatemala</p></div>
-      </div>
-    </section>
-
-    <section id="contacto">
-      <div class="contact reveal">
-        <h2>Trabajemos juntos</h2>
-        <p>¿Tienes un proyecto o una oportunidad? Escríbeme y conversemos.</p>
-        <div class="actions">
-          <a class="btn" href="mailto:elvinmorales48@gmail.com">elvinmorales48@gmail.com</a>
-          <a class="btn ghost" href="https://wa.me/50234064744?text=Hola%20Elvin%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/elvin-morales/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn ghost" href="https://github.com/emoralesd3" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-    </section>
+    <!-- ================= VISTA DETALLE DE PROYECTO ================= -->
+    <section id="detail" class="wrap" hidden></section>
   </main>
 
-  <footer>© <span id="year"></span> Elvin Rosalio Morales De León</footer>
+  <footer class="footer">
+    <div class="wrap foot-row">
+      <span>© <span id="year"></span> Elvin Rosalio Morales De León</span>
+      <span>Desarrollo de software a la medida · Guatemala y LATAM</span>
+    </div>
+  </footer>
 
-  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galería">
-    <button class="x" aria-label="Cerrar">✕</button>
-    <button class="prev" aria-label="Anterior">‹</button>
-    <img id="lbImg" alt="">
-    <button class="next" aria-label="Siguiente">›</button>
-    <div class="cap" id="lbCap"></div>
+  <div class="cta-bar" id="ctaBar" hidden>
+    <a class="btn" id="ctaWa" href="#" target="_blank" rel="noopener">Solicitar algo similar</a>
   </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galería de imágenes" hidden>
+    <button class="x" type="button" aria-label="Cerrar">✕</button>
+    <button class="prev" type="button" aria-label="Imagen anterior">‹</button>
+    <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+    <button class="next" type="button" aria-label="Imagen siguiente">›</button>
+  </div>
 
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Texto rotativo (efecto máquina de escribir)
-    const rot = document.getElementById('rot');
-    const words = ['Desarrollador Backend', 'Desarrollador Frontend', 'Desarrollador Móvil', 'Analista de Sistemas'];
-    if (reduce) { rot.textContent = words[0]; }
-    else {
-      let w = 0, c = 0, del = false;
-      (function type() {
-        const word = words[w];
-        c += del ? -1 : 1;
-        rot.textContent = word.slice(0, c);
-        let t = del ? 35 : 75;
-        if (!del && c === word.length) { del = true; t = 1600; }
-        else if (del && c === 0) { del = false; w = (w + 1) % words.length; t = 350; }
-        setTimeout(type, t);
-      })();
-    }
-
-    // Cinta de tecnologías: duplicar contenido para bucle continuo
-    const track = document.getElementById('track');
-    track.innerHTML += track.innerHTML;
-
-    // Índices para animación escalonada
-    document.querySelectorAll('.chips, .timeline, .tags').forEach(group => {
-      [...group.children].forEach((el, i) => el.style.setProperty('--i', i));
-    });
-
-    // Contadores animados (+9, 15+)
-    document.querySelectorAll('.stat b').forEach(b => {
-      const m = b.textContent.trim().match(/^(\+?)(\d+)(\+?)$/);
-      if (!m) return;
-      const [, pre, num, suf] = m, target = +num;
-      if (reduce) return;
-      b.textContent = pre + '0' + suf;
-      setTimeout(() => {
-        const t0 = performance.now(), dur = 1600;
-        (function tick(now) {
-          const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
-          b.textContent = pre + Math.round(target * e) + suf;
-          if (p < 1) requestAnimationFrame(tick);
-        })(t0);
-      }, 700);
-    });
-
-    // Brillo que sigue al cursor
-    document.querySelectorAll('.project, .stat, .tl').forEach(el => {
-      el.addEventListener('pointermove', e => {
-        const r = el.getBoundingClientRect();
-        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      });
-    });
-
-    // Barra de progreso, nav y parallax
-    const bar = document.getElementById('progress'), nav = document.getElementById('nav');
-    const blobs = document.querySelectorAll('.aurora i');
-    let ticking = false;
-    function onScroll() {
-      const h = document.documentElement.scrollHeight - innerHeight;
-      bar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`;
-      nav.classList.toggle('scrolled', scrollY > 30);
-      if (!reduce) blobs.forEach((b, i) => b.style.translate = `0 ${scrollY * (i + 1) * -0.06}px`);
-      ticking = false;
-    }
-    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-    onScroll();
-
-    // Enlace activo según la sección visible
-    const navLinks = [...document.querySelectorAll('#links a')];
-    const spy = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-    }), { rootMargin: '-45% 0px -50% 0px' });
-    navLinks.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
-
-    // Menú móvil
-    const links = document.getElementById('links');
-    document.getElementById('menuBtn').onclick = () => links.classList.toggle('open');
-    links.addEventListener('click', e => { if (e.target.tagName === 'A') links.classList.remove('open'); });
-
-    // Animación al hacer scroll
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // Galerías
-    const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
-    let current = [], idx = 0;
-    function show(i) { idx = (i + current.length) % current.length; lbImg.src = current[idx].src; lbImg.alt = current[idx].alt; lbCap.textContent = `${current[idx].alt} · ${idx + 1}/${current.length}`; }
-    function open(list, i) { current = list; show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-
-    document.querySelectorAll('.gallery').forEach(g => {
-      const names = g.dataset.images.split(',').map(s => s.trim()).filter(Boolean);
-      const title = g.closest('.project').querySelector('h3').textContent;
-      if (!names.length) {
-        g.innerHTML = `<div class="placeholder">Próximamente: capturas de este proyecto</div>`;
-        return;
-      }
-      const list = names.map((n, i) => ({ src: `${g.dataset.folder}/${n}`, alt: `${title} - imagen ${i + 1}` }));
-      list.forEach((it, i) => {
-        const b = document.createElement('button');
-        b.type = 'button'; b.setAttribute('aria-label', `Ampliar ${it.alt}`);
-        b.innerHTML = `<img loading="lazy" src="${it.src}" alt="${it.alt}">`;
-        b.onclick = () => open(list, i);
-        g.appendChild(b);
-      });
-    });
-
-    lb.querySelector('.x').onclick = close;
-    lb.querySelector('.prev').onclick = () => show(idx - 1);
-    lb.querySelector('.next').onclick = () => show(idx + 1);
-    lb.addEventListener('click', e => { if (e.target === lb) close(); });
-    document.addEventListener('keydown', e => {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') show(idx - 1);
-      if (e.key === 'ArrowRight') show(idx + 1);
-    });
-  </script>
+  <script src="data.js"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
