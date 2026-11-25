@@ -67,18 +67,31 @@
   /* ---------------- Hero: texto rotativo y contadores ---------------- */
   var rot = $('#rot');
   var words = ['Desarrollador Backend', 'Desarrollador Frontend', 'Desarrollador Móvil', 'Analista de Sistemas'];
-  if (reduce) { rot.textContent = words[0]; }
-  else {
-    var w = 0, c = 0, del = false;
-    (function type() {
-      var word = words[w], t = del ? 35 : 75;
-      c += del ? -1 : 1;
-      rot.textContent = word.slice(0, c);
-      if (!del && c === word.length) { del = true; t = 1600; }
-      else if (del && c === 0) { del = false; w = (w + 1) % words.length; t = 350; }
-      setTimeout(type, t);
-    })();
+  var root = document.documentElement, motionBtn = $('#motionBtn');
+  var stored = null; try { stored = localStorage.getItem('motion'); } catch (e) {}
+  var paused = stored ? stored === 'off' : reduce;   /* pausa manual; por defecto respeta prefers-reduced-motion */
+  var w = 0, c = 0, del = false, typeTimer = null;
+  function type() {
+    if (paused) { rot.textContent = words[w]; return; }
+    var word = words[w], t = del ? 35 : 75;
+    c += del ? -1 : 1;
+    rot.textContent = word.slice(0, c);
+    if (!del && c === word.length) { del = true; t = 1600; }
+    else if (del && c === 0) { del = false; w = (w + 1) % words.length; t = 350; }
+    typeTimer = setTimeout(type, t);
   }
+  function setMotion(off, save) {
+    paused = off;
+    root.classList.toggle('no-motion', off);
+    motionBtn.setAttribute('aria-pressed', String(off));
+    var label = off ? 'Reanudar animaciones' : 'Pausar animaciones';
+    motionBtn.setAttribute('aria-label', label); motionBtn.title = label;
+    clearTimeout(typeTimer);
+    if (off) rot.textContent = words[w]; else { c = 0; del = false; rot.textContent = ''; type(); }
+    if (save) { try { localStorage.setItem('motion', off ? 'off' : 'on'); } catch (e) {} }
+  }
+  motionBtn.addEventListener('click', function () { setMotion(!paused, true); });
+  setMotion(paused, false);
   $$('[data-count]').forEach(function (el) {
     var m = el.textContent.trim().match(/^(\+?)(\d+)(\+?)$/);
     if (!m || reduce) return;
@@ -116,6 +129,7 @@
         (pr ? '<a class="more" href="#/proyecto/' + esc(pr.slug) + '">Ver proyecto relacionado</a>' : '') +
         '</article>';
     }).join('');
+    $('#svcStatus').textContent = list.length + (list.length === 1 ? ' servicio' : ' servicios') + (area === 'todos' ? '' : ' en ' + areaLabel[area]);
   }
   filtersEl.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-a]');
@@ -142,11 +156,26 @@
 
   /* ---------------- Formularios de contacto ---------------- */
   function bindForm(form, build) {
-    form.addEventListener('input', function (e) { e.target.classList.remove('invalid'); });
+    var err = document.createElement('p');
+    err.className = 'form-error'; err.setAttribute('role', 'alert'); err.id = 'err-' + (form.id || 'form');
+    form.insertBefore(err, $('.form-actions', form));
+    form.addEventListener('input', function (e) {
+      e.target.classList.remove('invalid'); e.target.removeAttribute('aria-invalid');
+      if (!$$('.invalid', form).length) err.textContent = '';
+    });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var bad = $$('[required]', form).filter(function (el) { var v = !el.value.trim(); el.classList.toggle('invalid', v); return v; });
-      if (bad.length) { bad[0].focus(); return; }
+      var bad = $$('[required]', form).filter(function (el) {
+        var v = !el.value.trim(); el.classList.toggle('invalid', v);
+        if (v) { el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', err.id); } else el.removeAttribute('aria-invalid');
+        return v;
+      });
+      if (bad.length) {
+        var names = bad.map(function (el) { return el.closest('label').firstChild.textContent.trim(); });
+        err.textContent = 'Falta completar: ' + names.join(' y ') + '.';
+        bad[0].focus(); return;
+      }
+      err.textContent = '';
       var data = {}; new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
       var out = build(data);
       var via = (e.submitter && e.submitter.dataset.via) || 'wa';
