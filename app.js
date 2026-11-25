@@ -129,7 +129,7 @@
     var img = p.images && p.images[0];
     return '<div class="' + cls + '" style="--hue:' + (+p.hue || 160) + '">' +
       (img ? '<img loading="lazy" src="' + esc(img.src) + '" alt="">' : '<span class="mono" aria-hidden="true">' + esc(p.mono) + '</span>') +
-      (cls === 'cover' ? '<span class="chip">' + esc(p.year) + ' · ' + esc(p.area) + '</span>' : '') +
+      (cls === 'cover' ? '<span class="chip">' + (p.year ? esc(p.year) + ' · ' : '') + esc(p.area) + '</span>' : '') +
       '</div>';
   }
   $('#projGrid').innerHTML = PROJECTS.map(function (p) {
@@ -201,7 +201,7 @@
     var waMsg = 'Hola Elvin, vi el proyecto «' + p.title + '» en tu portafolio y me interesa un desarrollo similar para mi empresa.';
     var mailBody = waMsg + '\n\nMi nombre: \nMi empresa: \nQué necesito: ';
     var tabs = [
-      ['resumen', 'Resumen'], ['modulos', 'Módulos'], ['galeria', 'Galería' + (imgs.length ? ' (' + imgs.length + ')' : '')], ['contacto', 'Contacto']
+      ['resumen', 'Resumen'], ['modulos', 'Módulos'], ['galeria', imgs.length ? 'Galería (' + imgs.length + ')' : 'Demostración'], ['contacto', 'Contacto']
     ];
 
     var ticks = function (arr) { return '<ul class="ticks">' + arr.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>'; };
@@ -214,9 +214,11 @@
     var modulos = '<div class="card"><h2>Módulos implementados</h2><div class="mod-grid">' +
       p.modules.map(function (m) { return '<div class="mod"><h3>' + esc(m.group) + '</h3>' + ticks(m.items) + '</div>'; }).join('') + '</div></div>';
 
-    var galeria = '<div class="card"><h2>Galería</h2><div class="gal">' + (imgs.length
+    var demoMsg = 'Hola Elvin, vi el proyecto «' + p.title + '» en tu portafolio y me gustaría ver una demostración del sistema.';
+    var galeria = '<div class="card"><h2>' + (imgs.length ? 'Galería' : 'Demostración') + '</h2><div class="gal">' + (imgs.length
       ? imgs.map(function (im, i) { return '<button type="button" data-i="' + i + '" aria-label="Ampliar imagen: ' + esc(im.caption || ('imagen ' + (i + 1))) + '"><img loading="lazy" src="' + esc(im.src) + '" alt="' + esc(im.caption || '') + '"></button>'; }).join('')
-      : '<div class="empty"><b>Capturas próximamente</b><span>Puedo mostrarte una demostración del sistema bajo solicitud.</span></div>') + '</div></div>';
+      : '<div class="empty"><b>Demostración disponible bajo solicitud</b><span>Puedo mostrarte cómo funciona el sistema en una reunión o videollamada.</span>' +
+        '<a class="btn" style="margin-top:14px" href="' + esc(waLink(demoMsg)) + '" target="_blank" rel="noopener">Solicitar demostración</a></div>') + '</div></div>';
 
     var contacto = '<div class="card"><h2>¿Necesitas algo similar?</h2><p>Cuéntame sobre tu empresa y lo que quieres lograr. Te respondo con una propuesta de cómo abordarlo.</p>' +
       '<form class="form" id="projForm" novalidate style="margin-top:18px">' +
@@ -232,7 +234,7 @@
       '<div class="fp-cover">' + (imgs[0] ? '<img src="' + esc(imgs[0].src) + '" alt="">' : '<span class="mono" aria-hidden="true">' + esc(p.mono) + '</span>') + '</div>' +
       '<div class="fp-head"><div class="fp-avatar" aria-hidden="true">' + esc(p.mono) + '</div>' +
       '<div class="fp-title"><h1 id="detailTitle" tabindex="-1">' + esc(p.title) + '</h1><p class="sub">' + esc(p.subtitle) + '</p>' +
-      '<div class="meta"><span><b>' + esc(p.year) + '</b></span><span>' + esc(p.company) + '</span><span>' + esc(p.role) + '</span></div></div>' +
+      '<div class="meta">' + (p.year ? '<span><b>' + esc(p.year) + '</b></span>' : '') + '<span>' + esc(p.company) + '</span><span>' + esc(p.role) + '</span></div></div>' +
       '<div class="fp-actions">' +
       (live ? '<a class="btn" href="' + esc(live) + '" target="_blank" rel="noopener noreferrer">Ver sitio en vivo ↗</a>' : '') +
       (repo ? '<a class="btn btn-ghost" href="' + esc(repo) + '" target="_blank" rel="noopener noreferrer">Código ↗</a>' : '') +
@@ -247,7 +249,7 @@
       '<aside class="fp-side" aria-label="Información del proyecto">' +
       '<div class="card"><h2>Información</h2><dl class="info">' +
       '<div><dt>Tipo</dt><dd>' + esc(p.type) + '</dd></div><div><dt>Área</dt><dd>' + esc(p.area) + '</dd></div>' +
-      '<div><dt>Año</dt><dd>' + esc(p.year) + '</dd></div><div><dt>Empresa</dt><dd>' + esc(p.company) + '</dd></div><div><dt>Rol</dt><dd>' + esc(p.role) + '</dd></div></dl>' +
+      (p.year ? '<div><dt>Año</dt><dd>' + esc(p.year) + '</dd></div>' : '') + '<div><dt>Empresa</dt><dd>' + esc(p.company) + '</dd></div><div><dt>Rol</dt><dd>' + esc(p.role) + '</dd></div></dl>' +
       '<div class="tags" style="margin-top:16px">' + p.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div></div>' +
       '<div class="card cta-card"><h2>¿Quieres algo así?</h2><p>Desarrollo sistemas a la medida para Guatemala y LATAM. Hablemos de tu proyecto.</p>' +
       '<a class="btn" href="' + esc(waLink(waMsg)) + '" target="_blank" rel="noopener">Escribir por WhatsApp</a>' +
